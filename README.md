@@ -15,10 +15,10 @@ BE1 includes scRNAseq for the following lung cancer cell lines:
 -  CCL.185.IG [*EML4-ALK Fusion-A549 Isogenic Cell*](https://www.atcc.org/products/ccl-185ig) 
 
 ## Package installation
+
+```
 install.packages("devtools")
-
 library(devtools)
-
 install_github("kendomaniac/rCASC", ref="master")
-
+```
 
