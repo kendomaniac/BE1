@@ -3,19 +3,17 @@
 #' @param cell.lines, a vector indicating the cell lines to be included in the dataset. Seven options:
 #' @param n.cells, a vector indicating the number of cell for each cell line. If the number of cell exceed the number of available cell in a data set the full dataset is used.
 #' @param output.folder, a character string indicating the path where to save the data.
-#' @param input.folder, a character string indicating the path where BE1run12.zip from figshare doi:10.6084/m9.figshare.23939481 has been downloaded.
+#' @param input.folder, a character string indicating the path where BE1run12.zip from figshare https://figshare.com/articles/dataset/BE1_10XGenomics_count_matrices/23939481 has been downloaded.
 #' @author Raffaele Calogero, raffaele.calogero [at] unito [dot] it, University of Torino, Italy
 #' @return  A 10XGenomics sparse matrix
 #'
 #' @examples
 #' \dontrun{
-#'     #running deDetection
-#' system("wget http://130.192.119.59/public/annotated_setPace_10000_noC5_clustering.output.txt")
-#' system("wget http://130.192.119.59/public/annotated_setPace_10000_noC5.txt.zip")
-#' unzip("annotated_setPace_10000_noC5.txt.zip")
-#' anovaLike(group="docker", file=paste(getwd(),"annotated_setPace_10000_noC5.txt",sep="/"),
-#'        sep="\t", cluster.file="annotated_setPace_10000_noC5_clustering.output.txt", ref.cluster=3,
-#'        logFC.threshold=1, FDR.threshold=0.05, logCPM.threshold=4, plot=TRUE)
+#'
+#' #download https://figshare.com/articles/dataset/BE1_10XGenomics_count_matrices/23939481
+#' #the downloade file is named BE1run12.zip
+#' unzip("BE1run12.zip")
+#' makeDataset(input.folder="/Users/raffaelecalogero/Desktop/BE1run12", output.folder=/Users/raffaelecalogero/Desktop/BE1run12/tmp, cell.lines = c("A549", "CCL-185-IG", "CRL5868", "DV90", "HCC78", "HTB178", "PC9", "PBMCs"), n.cells=c(100,100,100,100,100,100,100,10))
 #'
 #' }
 #'
