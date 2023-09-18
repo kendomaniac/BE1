@@ -13,7 +13,7 @@
 #' #download https://figshare.com/articles/dataset/BE1_10XGenomics_count_matrices/23939481
 #' #the downloade file is named BE1run12.zip
 #' unzip("BE1run12.zip")
-#' makeDataset(input.folder="/Users/raffaelecalogero/Desktop/BE1run12", output.folder=/Users/raffaelecalogero/Desktop/BE1run12/tmp, cell.lines = c("A549", "CCL-185-IG", "CRL5868", "DV90", "HCC78", "HTB178", "PC9", "PBMCs"), n.cells=c(100,100,100,100,100,100,100,10))
+#' makeDataset(input.folder="/Users/raffaelecalogero/Desktop/BE1run12", output.folder="/Users/raffaelecalogero/Desktop/tmp", cell.lines = c("A549", "CCL-185-IG", "CRL5868", "DV90", "HCC78", "HTB178", "PC9", "PBMCs"), n.cells=c(100,100,100,100,100,100,100,10))
 #'
 #' }
 #'
@@ -31,7 +31,10 @@ makeDataset <- function(input.folder, output.folder, cell.lines = c("A549", "CCL
   matrix.path <- paste(matrix_dir, "matrix.mtx.gz", sep="/")
   mat <- readMM(file = matrix.path)
   mat.out <- emptySparse(nrow=dim(mat)[1], ncol=sum(n.cells), format="C")
+  feature.names = read.delim(features.path, header = FALSE, stringsAsFactors = FALSE)
+  #barcode.names = read.delim(barcode.path, header = FALSE, stringsAsFactors = FALSE)
   rownames(mat.out) = feature.names$V1
+
   start=1
   end=NULL
   col.mat.out = NULL
