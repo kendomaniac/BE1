@@ -7,6 +7,8 @@ Author: uthors@R: c(person("Raffaele Calogero", "Developer", role = c("aut", "cr
 Maintainer: Raffaele Calogero <raffaele.calogero@unito.it>
 Description: A package providing tools to manipulate BE1 benchmark experiment.
     Use four spaces when indenting paragraphs within the Description.
+Imports: Matrix, MatrixExtra, utils, R.utils, rlang
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.2.0

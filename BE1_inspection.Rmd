@@ -1,0 +1,85 @@
+---
+title: "BE1 inspection"
+author: "Raffaele Calogero"
+date: "2023-08-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# A549 KRAS and CCL-185-IG (A549 + EML-ALK)
+This is the UMAP plot of A549 and CCL-185-IG scRNAseq.
+The generation of the plot is quite long, but a picture of UMAP is available in images folder.
+It is notable that the two cell lines are not interspersed but the is not a clear separation between them. This dataset might represent an interesting challeng for bioinformatics tools that should depict cancer sub-populations
+
+
+```{r}
+
+#required libraries
+library(ggplot2)
+library(umap)
+
+#data
+a549.folder ="/Users/raffaelecalogero/Library/CloudStorage/OneDrive-Personal/Documents/SCO_ELIXIR-ITA-EU/elixir_benchmark_experiment/BE1/BE1_counts/A549/sample_filtered_feature_bc_matrix"
+a549 <- read.table(paste(a549.folder, "log2cpm.csv", sep="/"), sep=",", header=T, row.names=1)
+
+a549.alk.folder ="/Users/raffaelecalogero/Library/CloudStorage/OneDrive-Personal/Documents/SCO_ELIXIR-ITA-EU/elixir_benchmark_experiment/BE1/BE1_counts/CCL-185-IG/sample_filtered_feature_bc_matrix"
+a549.alk <- read.table(paste(a549.alk.folder, "log2cpm.csv", sep="/"), sep=",", header=T, row.names=1)
+
+combined = data.frame(a549[,sample(seq(1:dim(a549)[2]), size=3000)], a549.alk[,sample(seq(1:dim(a549.alk)[2]), size=3000)])
+
+cell_line <- as.factor(c(rep("kras", 3000), rep("alk", 3000)))
+
+
+#UMAP
+
+combined.umap <- umap(t(combined), random_state=111, n_epochs = 1000, n_neighbors = 15, min_dist= 0.3)
+f=data.frame(x=as.numeric(combined.umap$layout[,1]),y=as.numeric(combined.umap$layout[,2]))
+sp <- ggplot(f, aes(x=x,y=y)) + geom_point(pch=19, cex=0.3, aes(color = cell_line))
+print(sp)
+
+```
+# Full dataset
+
+```{r}
+a549.folder ="/Users/raffaelecalogero/Library/CloudStorage/OneDrive-Personal/Documents/SCO_ELIXIR-ITA-EU/elixir_benchmark_experiment/BE1/BE1_counts/A549/sample_filtered_feature_bc_matrix"
+a549 <- read.table(paste(a549.folder, "log2cpm.csv", sep="/"), sep=",", header=T, row.names=1)
+
+a549.alk.folder ="/Users/raffaelecalogero/Library/CloudStorage/OneDrive-Personal/Documents/SCO_ELIXIR-ITA-EU/elixir_benchmark_experiment/BE1/BE1_counts/CCL-185-IG/sample_filtered_feature_bc_matrix"
+a549.alk <- read.table(paste(a549.alk.folder, "log2cpm.csv", sep="/"), sep=",", header=T, row.names=1)
+
+h1395.folder ="/Users/raffaelecalogero/Library/CloudStorage/OneDrive-Personal/Documents/SCO_ELIXIR-ITA-EU/elixir_benchmark_experiment/BE1/BE1_counts/CRL5868_NCI-H1395/sample_filtered_feature_bc_matrix"
+h1395 <- read.table(paste(h1395.folder, "log2cpm.csv", sep="/"), sep=",", header=T, row.names=1)
+
+dv90.folder ="/Users/raffaelecalogero/Library/CloudStorage/OneDrive-Personal/Documents/SCO_ELIXIR-ITA-EU/elixir_benchmark_experiment/BE1/BE1_counts/DV90/sample_filtered_feature_bc_matrix"
+dv90 <- read.table(paste(dv90.folder, "log2cpm.csv", sep="/"), sep=",", header=T, row.names=1)
+
+hcc78.folder ="/Users/raffaelecalogero/Library/CloudStorage/OneDrive-Personal/Documents/SCO_ELIXIR-ITA-EU/elixir_benchmark_experiment/BE1/BE1_counts/HCC78/sample_filtered_feature_bc_matrix"
+hcc78 <- read.table(paste(hcc78.folder, "log2cpm.csv", sep="/"), sep=",", header=T, row.names=1)
+
+h596.folder ="/Users/raffaelecalogero/Library/CloudStorage/OneDrive-Personal/Documents/SCO_ELIXIR-ITA-EU/elixir_benchmark_experiment/BE1/BE1_counts/HTB178_NCI-H596/sample_filtered_feature_bc_matrix"
+h596 <- read.table(paste(h596.folder, "log2cpm.csv", sep="/"), sep=",", header=T, row.names=1)
+
+pc9.folder ="/Users/raffaelecalogero/Library/CloudStorage/OneDrive-Personal/Documents/SCO_ELIXIR-ITA-EU/elixir_benchmark_experiment/BE1/BE1_counts/PC9/sample_filtered_feature_bc_matrix"
+pc9 <- read.table(paste(pc9.folder, "log2cpm.csv", sep="/"), sep=",", header=T, row.names=1)
+
+
+combined = data.frame(a549[,sample(seq(1:dim(a549)[2]), size=1000)],
+                      a549.alk[,sample(seq(1:dim(a549.alk)[2]), size=1000)], 
+                      h1395[,sample(seq(1:dim(h1395)[2]), size=1000)],
+                      dv90[,sample(seq(1:dim(dv90)[2]), size=1000)],
+                      hcc78[,sample(seq(1:dim(hcc78)[2]), size=1000)],
+                      h596[,sample(seq(1:dim(h596)[2]), size=1000)],
+                      pc9[,sample(seq(1:dim(hpc9)[2]), size=1000)])
+
+cell_line <- as.factor(c(rep("kras", 1000), rep("alk", 1000), ))
+
+```
+
+
+
+
+
+
