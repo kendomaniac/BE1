@@ -19,6 +19,6 @@ BE1 includes scRNAseq for the following lung cancer cell lines:
 ```
 install.packages("devtools")
 library(devtools)
-install_github("kendomaniac/rCASC", ref="master")
+install_github("kendomaniac/BE1", ref="master")
 ```
 
