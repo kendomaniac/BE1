@@ -14,4 +14,9 @@ BE1 includes scRNAseq for the following lung cancer cell lines:
 -  HCC78 (SLC34A2-ROS1 Fusion, ROS1 inhibitors have antiproliferative effect PMID: [*Davies et al. (2012)*](https://pubmed.ncbi.nlm.nih.gov/22919003/) 
 -  CCL.185.IG [*EML4-ALK Fusion-A549 Isogenic Cell*](https://www.atcc.org/products/ccl-185ig) 
 
+## Package installation
+install.packages("devtools")
+library(devtools)
+install_github("kendomaniac/rCASC", ref="master")
+
 
