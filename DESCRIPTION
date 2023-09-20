@@ -2,7 +2,7 @@ Package: BE1
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.4
-Author: uthors@R: c(person("Raffaele Calogero", "Developer", role = c("aut", "cre"),
+Author: authors@R: c(person("Raffaele Calogero", "Developer", role = c("aut", "cre"),
                      email = "raffaele.calogero@unito.it"))
 Maintainer: Raffaele Calogero <raffaele.calogero@unito.it>
 Description: A package providing tools to manipulate BE1 benchmark experiment.
