@@ -27,6 +27,12 @@ makeDataset <- function(input.folder, output.folder, cell.lines = c("A549", "CCL
                         n.cells=c(100,100,100,100,100,100,100,10)){
 
   matrix_dir = paste(input.folder, cell.lines[1], sep="/")
+  if(!file.exists(matrix_dir)){
+    cat("\nError the folder where BE1 data should be located does not exist! Please download it from figshare, see makeDataset help parameter input.folder\n")
+  }
+  if(!file.exists(output.folder)){
+    file.create(output.folder)
+  }
   barcode.path <- paste(matrix_dir, "barcodes.tsv.gz", sep="/")
   features.path <- paste(matrix_dir, "features.tsv.gz", sep="/")
   matrix.path <- paste(matrix_dir, "matrix.mtx.gz", sep="/")
