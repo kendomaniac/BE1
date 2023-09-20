@@ -1,14 +1,15 @@
 Package: BE1
 Type: Package
 Title: What the Package Does (Title Case)
-Version: 0.1.4
-Author: authors@R: c(person("Raffaele Calogero", "Developer", role = c("aut", "cre"),
+Version: 0.1.5
+Author: Authors@R: c(person("Raffaele Calogero", "Developer", role = c("aut", "cre"),
                      email = "raffaele.calogero@unito.it"))
 Maintainer: Raffaele Calogero <raffaele.calogero@unito.it>
 Description: A package providing tools to manipulate BE1 benchmark experiment.
     Use four spaces when indenting paragraphs within the Description.
 Imports: Matrix, MatrixExtra, utils, R.utils
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
 License: GPL (>= 2)
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.2.0

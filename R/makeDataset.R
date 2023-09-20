@@ -13,7 +13,10 @@
 #' #download https://figshare.com/articles/dataset/BE1_10XGenomics_count_matrices/23939481
 #' #the downloade file is named BE1run12.zip
 #' unzip("BE1run12.zip")
-#' makeDataset(input.folder="/Users/raffaelecalogero/Desktop/BE1run12", output.folder="/Users/raffaelecalogero/Desktop/tmp", cell.lines = c("A549", "CCL-185-IG", "CRL5868", "DV90", "HCC78", "HTB178", "PC9", "PBMCs"), n.cells=c(100,100,100,100,100,100,100,10))
+#' makeDataset(input.folder="/Users/raffaelecalogero/Desktop/BE1run12",
+#'               output.folder="/Users/raffaelecalogero/Desktop/tmp",
+#'               cell.lines = c("A549", "CCL-185-IG", "CRL5868", "DV90", "HCC78", "HTB178", "PC9", "PBMCs"),
+#'               n.cells=c(100,100,100,100,100,100,100,10))
 #'
 #' }
 #'
@@ -23,20 +26,13 @@
 makeDataset <- function(input.folder, output.folder, cell.lines = c("A549", "CCL-185-IG", "CRL5868", "DV90", "HCC78", "HTB178", "PC9", "PBMCs"),
                         n.cells=c(100,100,100,100,100,100,100,10)){
 
-  #' @importFrom utils write.table
-  #' @importFrom Matrix readMM
-  #' @importFrom MatrixExtra emptySparse
-  #' @importFrom Matrix writeMM
-  #'  @importFrom utils write.table
-  #' @importFrom R.utils gzip
-
   matrix_dir = paste(input.folder, cell.lines[1], sep="/")
   barcode.path <- paste(matrix_dir, "barcodes.tsv.gz", sep="/")
   features.path <- paste(matrix_dir, "features.tsv.gz", sep="/")
   matrix.path <- paste(matrix_dir, "matrix.mtx.gz", sep="/")
-  mat <- readMM(file = matrix.path)
-  mat.out <- emptySparse(nrow=dim(mat)[1], ncol=sum(n.cells), format="C")
-  feature.names = read.delim(features.path, header = FALSE, stringsAsFactors = FALSE)
+  mat <- Matrix::readMM(file = matrix.path)
+  mat.out <- MatrixExtra::emptySparse(nrow=dim(mat)[1], ncol=sum(n.cells), format="C")
+  feature.names = utils::read.delim(features.path, header = FALSE, stringsAsFactors = FALSE)
   #barcode.names = read.delim(barcode.path, header = FALSE, stringsAsFactors = FALSE)
   rownames(mat.out) = feature.names$V1
 
@@ -48,11 +44,11 @@ makeDataset <- function(input.folder, output.folder, cell.lines = c("A549", "CCL
     barcode.path <- paste(matrix_dir, "barcodes.tsv.gz", sep="/")
     features.path <- paste(matrix_dir, "features.tsv.gz", sep="/")
     matrix.path <- paste(matrix_dir, "matrix.mtx.gz", sep="/")
-    mat <- readMM(file = matrix.path)
-    feature.names = read.delim(features.path,
+    mat <- Matrix::readMM(file = matrix.path)
+    feature.names = utils::read.delim(features.path,
                              header = FALSE,
                              stringsAsFactors = FALSE)
-    barcode.names = read.delim(barcode.path,
+    barcode.names = utils::read.delim(barcode.path,
                              header = FALSE,
                              stringsAsFactors = FALSE)
     colnames(mat) = barcode.names$V1
@@ -68,13 +64,13 @@ makeDataset <- function(input.folder, output.folder, cell.lines = c("A549", "CCL
   colnames(mat.out) = col.mat.out
 # writing borrowd from Write count data in the 10x format Aaron Lun
 
-  writeMM(mat.out, file=file.path(output.folder, "matrix.mtx"))
+  Matrix::writeMM(mat.out, file=file.path(output.folder, "matrix.mtx"))
   write(as.character(col.mat.out), file=file.path(output.folder, "barcodes.tsv"))
-  write.table(feature.names, file=file.path(output.folder, "features.tsv"), row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+  utils::write.table(feature.names, file=file.path(output.folder, "features.tsv"), row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
 
-  gzip(file.path(output.folder, "matrix.mtx"))
-  gzip(file.path(output.folder, "barcodes.tsv"))
-  gzip(file.path(output.folder, "features.tsv"))
+  R.utils::gzip(file.path(output.folder, "matrix.mtx"))
+  R.utils::gzip(file.path(output.folder, "barcodes.tsv"))
+  R.utils::gzip(file.path(output.folder, "features.tsv"))
   return(NULL)
 
 }
