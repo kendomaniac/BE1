@@ -3,7 +3,7 @@ Supporting code for the analysis of a single cell RNAseq (10XGenomics platform) 
 controlled heterogeneity environment using lung cancer cell lines characterised by expressing seven different driver genes 
 (EGFR, ALK, MET, ERBB2, KRAS, BRAF, ROS1). BE1 is part of the WP3 of [Elixir Single Cell Omics](https://www.singlecellomics.org/pages/tools/index#be1) 
 implementation study. 
-BE1 fastq data will be available at GEO repository. 10XGenomics count matrices and annotated derivatives are available at 10.6084/m9.figshare.23939481.
+BE1 fastq data will be available at GEO repository. 10XGenomics count matrices and annotated derivatives are available at  [*10.6084/m9.figshare.23939481*](https://figshare.com/ndownloader/files/42312711).
 Further supporting information on genomics and transcriptomis data (CCLE) and on the drive genes targets (see below BE1 structure) are available at [*10.6084/m9.figshare.23284748*](https://doi.org/10.6084/m9.figshare.23284748.v1).
 BE1 includes scRNAseq for the following lung cancer cell lines:
 -  PC9 (EGFR Del19, activating mutation, PMID: [*Simonetti et al. (2010)*](https://pubmed.ncbi.nlm.nih.gov/21167064/) 
