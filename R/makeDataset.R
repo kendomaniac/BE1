@@ -23,7 +23,12 @@
 makeDataset <- function(input.folder, output.folder, cell.lines = c("A549", "CCL-185-IG", "CRL5868", "DV90", "HCC78", "HTB178", "PC9", "PBMCs"),
                         n.cells=c(100,100,100,100,100,100,100,10)){
 
-
+  #' @importFrom utils write.table
+  #' @importFrom Matrix readMM
+  #' @importFrom MatrixExtra emptySparse
+  #' @importFrom Matrix writeMM
+  #'  @importFrom utils write.table
+  #' @importFrom R.utils gzip
 
   matrix_dir = paste(input.folder, cell.lines[1], sep="/")
   barcode.path <- paste(matrix_dir, "barcodes.tsv.gz", sep="/")
